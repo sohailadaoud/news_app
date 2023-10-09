@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
+import 'package:news_app/category/tab_container.dart';
 import 'package:news_app/model/SourceResponse.dart';
 
 class CategoryDetails extends StatelessWidget {
@@ -39,12 +40,7 @@ class CategoryDetails extends StatelessWidget {
               );
             }
             var sourceList = snapshot.data?.sources ?? [];
-            return ListView.builder(
-              itemBuilder: (context, index) {
-                return Text(sourceList[index].name ?? '');
-              },
-              itemCount: sourceList.length,
-            );
+            return TabContainer(sourcesList: sourceList);
           }),
     );
   }
