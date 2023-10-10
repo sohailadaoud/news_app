@@ -10,6 +10,10 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         title: Text('News App', style: Theme.of(context).textTheme.titleLarge),
       ),
+
+      // drawer: Drawer(
+      //   child: HomeDrawer(),
+      // ),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/category/news_container.dart';
-import 'package:news_app/category/tab_item.dart';
+import 'package:news_app/news/news_container.dart';
+import 'package:news_app/tabs/tab_item.dart';
 
 import '../model/SourceResponse.dart';
 

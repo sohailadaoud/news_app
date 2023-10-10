@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/model/NewsResponse.dart';
 import 'package:news_app/model/SourceResponse.dart';
+import 'package:news_app/news/news_item.dart';
 
 class NewsContainer extends StatelessWidget {
   Source source;
@@ -41,7 +42,7 @@ class NewsContainer extends StatelessWidget {
           var newsList = snapshot.data?.articles ?? [];
           return ListView.builder(
             itemBuilder: (context, index) {
-              return Text(newsList[index].title ?? '');
+              return NewsItem(news: newsList[index]);
             },
             itemCount: newsList.length,
           );

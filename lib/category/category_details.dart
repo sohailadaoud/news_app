@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
-import 'package:news_app/category/tab_container.dart';
 import 'package:news_app/model/SourceResponse.dart';
+import 'package:news_app/tabs/tab_container.dart';
 
 class CategoryDetails extends StatelessWidget {
   static const String routeName = 'category_dettails';
