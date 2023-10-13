@@ -4,6 +4,9 @@ import 'package:news_app/model/category.dart';
 
 class CategoryFragment extends StatelessWidget {
   var categoriesList = Category.getCategories();
+  Function onCategoryClick;
+
+  CategoryFragment({required this.onCategoryClick});
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +25,13 @@ class CategoryFragment extends StatelessWidget {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, mainAxisSpacing: 18, crossAxisSpacing: 18),
               itemBuilder: (context, index) {
-                return CategoryItem(
-                    category: categoriesList[index], index: index);
+                return InkWell(
+                  onTap: () {
+                    onCategoryClick(categoriesList[index]);
+                  },
+                  child: CategoryItem(
+                      category: categoriesList[index], index: index),
+                );
               },
               itemCount: categoriesList.length,
             ),

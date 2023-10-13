@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/category/category_details.dart';
 import 'package:news_app/category/category_fragment.dart';
 import 'package:news_app/home/home_drawer.dart';
+import 'package:news_app/model/category.dart';
+import 'package:news_app/settings/settings_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home';
@@ -15,11 +18,33 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('News_App', style: Theme.of(context).textTheme.titleLarge),
+        title: Text('News App', style: Theme.of(context).textTheme.titleLarge),
       ),
-      drawer: HomeDrawer(),
-      body: CategoryFragment(),
+      drawer: HomeDrawer(
+        onDrawerItemClick: onDrawerItemClick,
+      ),
+      body: selectedDrawerItem == HomeDrawer.settings
+          ? SettingsTab()
+          : selectedCategory == null
+              ? CategoryFragment(onCategoryClick: onCategoryClick)
+              : CategoryDetails(category: selectedCategory!),
     );
+  }
+
+  Category? selectedCategory;
+
+  void onCategoryClick(Category newSelectedCategory) {
+    selectedCategory = newSelectedCategory;
+    setState(() {});
+  }
+
+  int selectedDrawerItem = HomeDrawer.categories;
+
+  void onDrawerItemClick(int newSelectedDrawerItem) {
+    selectedDrawerItem = newSelectedDrawerItem;
+    selectedCategory = null;
+    Navigator.pop(context);
+    setState(() {});
   }
 }
 
