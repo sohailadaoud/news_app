@@ -14,9 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         HomeScreen.routeName: (context) => HomeScreen(),
-        CategoryDetails.routeName: (context) => CategoryDetails()
+        CategoryDetails.routeName: (context) => CategoryDetails(),
+        'category': (context) => CategoryDetails()
       },
-      initialRoute: CategoryDetails.routeName,
+      initialRoute: HomeScreen.routeName,
       theme: MyTheme.lightTheme,
     );
   }
