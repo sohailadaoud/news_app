@@ -3,6 +3,7 @@ import 'package:news_app/category/category_details.dart';
 import 'package:news_app/category/category_fragment.dart';
 import 'package:news_app/home/home_drawer.dart';
 import 'package:news_app/model/category.dart';
+import 'package:news_app/myTheme.dart';
 import 'package:news_app/settings/settings_tab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,14 +18,45 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-            selectedDrawerItem == HomeDrawer.settings
-                ? 'Settings'
-                : selectedCategory == null
-                    ? 'News App'
-                    : selectedCategory!.title,
-            style: Theme.of(context).textTheme.titleLarge),
+        title: GestureDetector(
+          onTap: searchBar,
+          child: searchBarVisibile
+              ? Container(
+                  decoration: BoxDecoration(
+                    color: MyTheme.whiteColor,
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  padding: EdgeInsets.all(10.0),
+                  child: TextField(
+                    controller: searchBarController,
+                    decoration: InputDecoration(
+                      hintText: 'Search ',
+                      hintStyle: TextStyle(color: MyTheme.primaryLightColor),
+                      border: InputBorder.none,
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.cancel,
+                            color: MyTheme.primaryLightColor),
+                        onPressed: () {
+                          searchBarVisibile = false;
+                          searchBarController.clear();
+                          setState(() {});
+                        },
+                      ),
+                    ),
+                    autofocus: true,
+                    onChanged: (value) {
+                      // Handle search query
+                    },
+                  ),
+                )
+              : Text(
+                  selectedDrawerItem == HomeDrawer.settings
+                      ? 'Settings'
+                      : selectedCategory == null
+                          ? 'News App'
+                          : selectedCategory!.title,
+                  style: Theme.of(context).textTheme.titleLarge),
+        ),
       ),
       drawer: HomeDrawer(
         onDrawerItemClick: onDrawerItemClick,
@@ -52,7 +84,42 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.pop(context);
     setState(() {});
   }
+
+  TextEditingController searchBarController = TextEditingController();
+  bool searchBarVisibile = false;
+
+  void searchBar() {
+    setState(() {
+      searchBarVisibile = !searchBarVisibile;
+      if (!searchBarVisibile) {
+        searchBarController.clear();
+      }
+    });
+  }
 }
+
+//=========================================
+// appBar: AppBar(
+//   centerTitle: true,
+//   title: Text(
+//       selectedDrawerItem == HomeDrawer.settings
+//           ? 'Settings'
+//           : selectedCategory == null
+//               ? 'News App'
+//               : selectedCategory!.title,
+//       style: Theme.of(context).textTheme.titleLarge),
+// ),
+
+// appBar: AppBar(
+//   centerTitle: true,
+//   title: Text(
+//       selectedDrawerItem == HomeDrawer.settings
+//           ? 'Settings'
+//           : selectedCategory == null
+//               ? 'News App'
+//               : selectedCategory!.title,
+//       style: Theme.of(context).textTheme.titleLarge),
+// ),
 
 // Drawer(
 //   child: ListView(
