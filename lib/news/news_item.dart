@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/model/NewsResponse.dart';
 import 'package:news_app/myTheme.dart';
+import 'package:news_app/news/news_details_screen.dart';
 
 class NewsItem extends StatelessWidget {
   News news;
 
-  NewsItem({required this.news});
+  //Function onNewsClick ;
+
+  NewsItem({
+    required this.news,
+    //required this.onNewsClick
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,11 +25,21 @@ class NewsItem extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.3,
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(18),
-                child: Image.network(
-                  news.urlToImage ?? '',
-                  width: double.infinity,
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  fit: BoxFit.fill,
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      NewsDetailsScreen.routeName,
+                      arguments: news,
+                    );
+                    //onNewsClick()
+                  },
+                  child: Image.network(
+                    news.urlToImage ?? '',
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    fit: BoxFit.fill,
+                  ),
                 )
                 // CachedNetworkImage(
                 //   imageUrl : news.urlToImage ??'' ,
