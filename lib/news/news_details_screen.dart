@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/model/NewsResponse.dart';
 import 'package:news_app/myTheme.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NewsDetailsScreen extends StatelessWidget {
   static const String routeName = 'news_details';
 
   final News news;
+  final Uri URL;
 
-  NewsDetailsScreen({required this.news});
+  NewsDetailsScreen({required this.news})
+      : URL = Uri.parse(news.url ?? 'https://www.google.com');
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +93,9 @@ class NewsDetailsScreen extends StatelessWidget {
                   height: 8,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    launchURL();
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -111,4 +116,22 @@ class NewsDetailsScreen extends StatelessWidget {
           ),
         ));
   }
+
+  Future<void> launchURL() async {
+    if (await canLaunch(URL.toString())) {
+      await launch(URL.toString());
+    } else {
+      throw Exception('Could not launch $URL');
+    }
+  }
 }
+
+// final Uri URL = Uri.parse('https://flutter.dev/');
+
+// Future<void> LaunchURL() async {
+//   if (!await launchUrl(URL)) {
+//     throw Exception('Could not launch $URL');
+//   }
+// }
+
+//final Uri URL = Uri.parse('https://flutter.dev/');
