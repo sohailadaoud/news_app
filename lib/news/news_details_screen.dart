@@ -7,10 +7,13 @@ class NewsDetailsScreen extends StatelessWidget {
   static const String routeName = 'news_details';
 
   final News news;
-  final Uri URL;
 
-  NewsDetailsScreen({required this.news})
-      : URL = Uri.parse(news.url ?? 'https://www.google.com');
+  //final Uri URL;
+
+  NewsDetailsScreen({required this.news});
+
+  // NewsDetailsScreen({required this.news})
+  //     : URL = Uri.parse(news.url ?? 'https://www.google.com');
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +97,7 @@ class NewsDetailsScreen extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    launchURL();
+                    launchURL(news.url ?? '');
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -117,13 +120,21 @@ class NewsDetailsScreen extends StatelessWidget {
         ));
   }
 
-  Future<void> launchURL() async {
-    if (await canLaunch(URL.toString())) {
-      await launch(URL.toString());
+  Future<void> launchURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
     } else {
-      throw Exception('Could not launch $URL');
+      throw 'Could not launch $url';
     }
   }
+
+// Future<void> launchURL() async {
+//   if (await canLaunch(URL.toString())) {
+//     await launch(URL.toString());
+//   } else {
+//     throw Exception('Could not launch $URL');
+//   }
+// }
 }
 
 // final Uri URL = Uri.parse('https://flutter.dev/');
