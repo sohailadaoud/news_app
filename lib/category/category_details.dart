@@ -19,6 +19,7 @@ class CategoryDetails extends StatefulWidget {
 
 class _CategoryDetailsState extends State<CategoryDetails> {
   CategoryDetailsViewModel viewModel = CategoryDetailsViewModel();
+  //CategoryDetailsViewModelCubit viewModel= CategoryDetailsViewModelCubit();
 
   @override
   void initState() {
