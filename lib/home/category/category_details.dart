@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/home/category/category_details_view_model.dart';
 import 'package:news_app/model/category.dart';
+import 'package:news_app/repository/source/repository/source_repository_impl.dart';
 import 'package:news_app/tabs/tab_container.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +17,9 @@ class CategoryDetails extends StatefulWidget {
 }
 
 class _CategoryDetailsState extends State<CategoryDetails> {
-  CategoryDetailsViewModel viewModel = CategoryDetailsViewModel();
+  CategoryDetailsViewModel viewModel = CategoryDetailsViewModel(
+      repositoryContract: injectSourceRepositoryContract());
+
   //CategoryDetailsViewModelCubit viewModel= CategoryDetailsViewModelCubit();
 
   @override

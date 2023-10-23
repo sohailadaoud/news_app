@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/model/SourceResponse.dart';
-import 'package:news_app/repository/source/datasource/source_remote_data_source_impl.dart';
-import 'package:news_app/repository/source/repository/source_repository_impl.dart';
 import 'package:news_app/repository/source/source_repository_contract.dart';
 
 class CategoryDetailsViewModel extends ChangeNotifier {
@@ -10,16 +7,9 @@ class CategoryDetailsViewModel extends ChangeNotifier {
   List<Source>? sourcesList;
   String? errorMessage;
 
-  late SourceRepositoryContract repositoryContract;
-  late SourceRemoteDataSource remoteDataSource;
-  late ApiManager apiManager;
+  SourceRepositoryContract repositoryContract;
 
-  CategoryDetailsViewModel() {
-    apiManager = ApiManager();
-    remoteDataSource = SourceRemoteDataSourceImpl(apiManager: apiManager);
-    repositoryContract =
-        SourceRepositoryImpl(remoteDataSource: remoteDataSource);
-  }
+  CategoryDetailsViewModel({required this.repositoryContract});
 
   void getSource(String categoryId) async {
     sourcesList = null;

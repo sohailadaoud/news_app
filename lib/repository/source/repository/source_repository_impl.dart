@@ -1,4 +1,5 @@
 import 'package:news_app/model/SourceResponse.dart';
+import 'package:news_app/repository/source/datasource/source_remote_data_source_impl.dart';
 import 'package:news_app/repository/source/source_repository_contract.dart';
 
 class SourceRepositoryImpl implements SourceRepositoryContract {
@@ -10,4 +11,8 @@ class SourceRepositoryImpl implements SourceRepositoryContract {
   Future<SourceResponse?> getSources(String categoryId) {
     return remoteDataSource.getSources(categoryId);
   }
+}
+
+SourceRepositoryContract injectSourceRepositoryContract() {
+  return SourceRepositoryImpl(remoteDataSource: injectSourceRemoteDataSource());
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/home/news/news_container_view_model.dart';
 import 'package:news_app/home/news/news_item.dart';
 import 'package:news_app/model/SourceResponse.dart';
+import 'package:news_app/repository/news/repository/news_repository_impl.dart';
 import 'package:provider/provider.dart';
 
 class NewsContainer extends StatefulWidget {
@@ -16,7 +17,8 @@ class NewsContainer extends StatefulWidget {
 }
 
 class _NewsContainerState extends State<NewsContainer> {
-  NewsContainerViewModel viewModel = NewsContainerViewModel();
+  NewsContainerViewModel viewModel = NewsContainerViewModel(
+      repositoryContract: injectionNewsRepositoryContract());
 
   @override
   void initState() {

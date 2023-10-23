@@ -1,5 +1,6 @@
 import 'package:news_app/model/NewsResponse.dart';
 import 'package:news_app/repository/news/datasource/news_data_source.dart';
+import 'package:news_app/repository/news/datasource/news_remote_data_source.dart';
 import 'package:news_app/repository/news/news_repository_contract.dart';
 
 class NewsRepositoryImpl implements NewsRepositoryContract {
@@ -11,4 +12,8 @@ class NewsRepositoryImpl implements NewsRepositoryContract {
   Future<NewsResponse?> getNews(String sourceId) {
     return remoteDataSource.getNews(sourceId);
   }
+}
+
+NewsRepositoryContract injectionNewsRepositoryContract() {
+  return NewsRepositoryImpl(remoteDataSource: injectionNewsRemoteDataSource());
 }

@@ -13,3 +13,11 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource {
     return response;
   }
 }
+
+NewsRemoteDataSource injectionNewsRemoteDataSource() {
+  return NewsRemoteDataSourceImpl(apiManager: injectionApiManager());
+}
+
+ApiManager injectionApiManager() {
+  return ApiManager();
+}
