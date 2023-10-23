@@ -25,7 +25,7 @@ class ApiManager {
 
    */
 
-  static Future<NewsResponse?> getNewsBySourceId(String sourceId) async {
+   Future<NewsResponse?> getNewsBySourceId(String sourceId) async {
     Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.newsApi,
         {'apiKey': 'c32b5bd86d2e44f5b256f1952bdbf86f', 'sources': sourceId});
     try {
