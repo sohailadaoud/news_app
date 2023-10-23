@@ -11,7 +11,7 @@ class CategoryDetailsViewModelCubit extends Cubit<SourceState> {
   late ApiManager apiManager;
 
   CategoryDetailsViewModelCubit() : super(SourceInitialState()) {
-    apiManager = ApiManager();
+    apiManager = ApiManager.getApiManagerInstance();
     remoteDataSource = SourceRemoteDataSourceImpl(apiManager: apiManager);
     repositoryContract =
         SourceRepositoryImpl(remoteDataSource: remoteDataSource);

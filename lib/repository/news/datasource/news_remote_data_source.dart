@@ -19,5 +19,5 @@ NewsRemoteDataSource injectionNewsRemoteDataSource() {
 }
 
 ApiManager injectionApiManager() {
-  return ApiManager();
+  return ApiManager.getApiManagerInstance();
 }

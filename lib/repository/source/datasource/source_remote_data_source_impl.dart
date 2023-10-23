@@ -19,5 +19,5 @@ SourceRemoteDataSource injectSourceRemoteDataSource() {
 }
 
 ApiManager injectApiManager() {
-  return ApiManager();
+  return ApiManager.getApiManagerInstance();
 }
