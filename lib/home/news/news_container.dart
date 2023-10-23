@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
+import 'package:news_app/home/news/news_container_view_model.dart';
+import 'package:news_app/home/news/news_item.dart';
 import 'package:news_app/model/NewsResponse.dart';
 import 'package:news_app/model/SourceResponse.dart';
-import 'package:news_app/news/news_container_view_model.dart';
-import 'package:news_app/news/news_item.dart';
 import 'package:provider/provider.dart';
 
 class NewsContainer extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/category/category_details.dart';
-import 'package:news_app/category/category_fragment.dart';
+import 'package:news_app/home/category/category_details.dart';
+import 'package:news_app/home/category/category_fragment.dart';
 import 'package:news_app/home/home_drawer.dart';
 import 'package:news_app/model/category.dart';
 import 'package:news_app/myTheme.dart';
